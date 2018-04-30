@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="example.css">
+		<link rel="stylesheet" type="text/css" href="default.css">
+	</head>
+	<body>
+		<div class="tourist">
+			<marquee behavior="alternate">欢迎您，jlu！</marquee>
+		</div>
+		<a href="../main/main.html" class="go_to_main">学会了，去使用</a>
+		<div class="nav">输入.gost文件后：</div>
+		<div class="header">
+			<p>请点击您想查看的同源基因：</p>
+			<p class="h_tip">#同时亮起即为同源基因#</p>
+		</div>
+		<div class="container">
+			<!-- 第一个基因 -->
+			<div class="up">
+				
+				<div class="box"><!--No.1 总块（小块和编号）-->
+					<p>111111</p><!--编号!-->
+					<div class="block color_black"></div> <!--小块-->
+				</div>
+				<div class="box"><!--No.2 总块（小块和编号）-->
+					<p>222222</p><!--编号-->
+					<div class="block color_black"></div><!--小块-->
+				</div>
+				<div class="box"><!--No.3 总块（小块和编号）-->
+					<p>333333</p><!--编号-->
+					<div class="block color_black"></div><!--小块-->
+				</div>
+				<div class="box"><!--No.4 总块（小块和编号）-->
+					<p>444444</p><!--编号-->
+					<div class="block color_black"></div><!--小块-->
+				</div>
+				<div class="box"><!--No.5 总块（小块和编号）-->
+					<p>555555</p><!--编号-->
+					<div class="block color_black"></div><!--小块-->
+				</div>
+				<div class="box"><!--No.6 总块（小块和编号）-->
+					<p>666666</p><!--编号-->
+					<div class="block color_black"></div><!--小块-->
+				</div>
+				<div class="box"><!--No.7 总块（小块和编号）-->
+					<p>777777</p><!--编号-->
+					<div class="block color_black"></div><!--小块-->
+				</div>
+				<div class="box"><!--No.8 总块（小块和编号）-->
+					<p>888888</p><!--编号-->
+					<div class="block color_black"></div><!--小块-->
+				</div>
+				<div class="box"><!--No.9 总块（小块和编号）-->
+					<p>999999</p><!--编号-->
+					<div class="block color_black"></div><!--小块-->
+				</div>
+				<div class="box"><!--No.9 总块（小块和编号）-->
+					<p>10101010</p><!--编号-->
+					<div class="block color_black"></div><!--小块-->
+				</div>
+				<table><tbody><tr><td>
+					<div class="line1"></div><!--横线-->
+				</td></tr></tbody></table>
+			</div>
+			
+			<!-- 第二个基因 -->
+			<div class="down">
+				<div class="box"><!--No.1 总块（小块和编号）-->
+					<div class="block Se_color"></div> <!--小块-->
+					<p>111111</p><!--编号!-->
+				</div>
+				
+				<div class="box"><!--No.2 总块（小块和编号）-->
+					<div class="block Se_color"></div><!--小块-->
+					<p>222222</p><!--编号-->
+				</div>
+				
+				<div class="box"><!--No.3 总块（小块和编号）-->
+					<div class="block Se_color"></div><!--小块-->
+					<p>333333</p><!--编号-->
+				</div>
+				
+				<div class="box"><!--No.4 总块（小块和编号）-->
+					<div class="block Se_color"></div><!--小块-->
+					<p>444444</p><!--编号-->
+				</div>
+				
+				<div class="box"><!--No.5 总块（小块和编号）-->
+					<div class="block Se_color"></div><!--小块-->
+					<p>555555</p><!--编号-->
+				</div>
+				<div class="box"><!--No.6 总块（小块和编号）-->
+					<div class="block Se_color"></div><!--小块-->
+					<p>666666</p><!--编号-->
+				</div>
+				<div class="box"><!--No.7 总块（小块和编号）-->
+					<div class="block Se_color"></div><!--小块-->
+					<p>777777</p><!--编号-->
+				</div>
+				<div class="box"><!--No.8 总块（小块和编号）-->
+					<div class="block Se_color"></div><!--小块-->
+					<p>888888</p><!--编号-->
+				</div>
+				<div class="box"><!--No.9 总块（小块和编号）-->
+					<div class="block Se_color"></div><!--小块-->
+					<p>999999</p><!--编号-->
+				</div>
+				<div class="box"><!--No.9 总块（小块和编号）-->
+					<div class="block Se_color"></div><!--小块-->
+					<p>10101010</p><!--编号-->
+				</div>
+				<div class="line2"></div><!--横线-->
+			</div>
+		</div>
+
+		<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+		<script>
+			$('.up .box').click(function(){
+				$(this).find('.block').addClass('color_red').parent('.box').siblings('.box').find('.block').removeClass('color_red');
+				$('.down .box').eq($(this).index()).find('.block').addClass('color_red').parent('.box').siblings('.box').find('.block').removeClass('color_red');
+			});
+			$('.down .box').click(function(){
+				$(this).find('.block').addClass('color_red').parent('.box').siblings('.box').find('.block').removeClass('color_red');
+				$('.up .box').eq($(this).index()).find('.block').addClass('color_red').parent('.box').siblings('.box').find('.block').removeClass('color_red');
+			});
+		</script>
+		<!-- <script type="text/javascript" src="index.js"></script> -->
+
+	</body>
+
+	
+</html>

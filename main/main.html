@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<link rel="stylesheet" type="text/css" href="default.css">
+	</head>
+	<body>
+        <div class="tourist">
+            <marquee behavior="alternate">欢迎您，jlu！</marquee>
+        </div>
+		<div class="view_his">
+			<button id="btn_load">查看上传记录</button><br/>
+        	<button id="btn_clear">清除上传记录</button>
+        	<div id="show_LocalStorage"></div><br/>
+		</div>
+		<div style="margin:50px auto; width: 310px">
+			<p class="label">请选择.gost文件:&nbsp&nbsp&nbsp</p><br/>
+			<input type="file" onchange="jsReadFiles(this.files)" id="uploading">
+			<button id="btn_save">确定</button>
+			<p class="tip">tip: 点击某一基因，同时亮起即为同源基因<br/>您可以点击基因id查看该基因的详细信息</p>
+		</div>
+        		<div class="container">
+			<!-- 第一个基因 -->
+			<div class="up" id='up'>
+			</div>
+			<!-- 第二个基因 -->
+			<div class="down" id='down'>
+			</div>
+		</div>
+	<script type="text/javascript">
+	var save = document.getElementById("btn_save");
+    var load = document.getElementById("btn_load");
+    var input = document.getElementById("uploading");
+    var show_LocalStorage = document.getElementById("show_LocalStorage");
+    var clear = document.getElementById("btn_clear");
+    
+    
+     save.addEventListener("click",saveToLocalStorage);
+     load.addEventListener("click",loadFromLocalStorage);
+     clear.addEventListener("click",hisClear);
+
+     function hisClear(){
+        show_LocalStorage.style.display= "none";
+        localStorage.clear();
+     }
+
+
+    var i=0;
+    //var arr = new Array();
+    var arr = [];
+    
+    function saveToLocalStorage(){
+        if(input.value){
+            arr[i]=input.value;
+            i++;
+        }
+        //for(var j=0;j<arr.length; j++)
+        localStorage.setItem('history',JSON.stringify(arr));
+       
+    }
+    var sw =1;
+
+    function loadFromLocalStorage(){
+        if(localStorage.history==null){
+            alert("您的上传记录为空！");
+        }
+        if(sw){
+            arr = JSON.parse(localStorage.getItem('history'));
+            for (var i = 0; i<arr.length;i++) {
+            //arr[i]=arr[i].substring(12);
+            arr[i]=arr[i].slice(12);
+            show_LocalStorage.append(arr[i]+" \n ");
+            sw = 0;
+            }
+        }
+     }
+		//获取第一个基于节点
+        let up = document.getElementById('up');
+        //获取第二个节点
+        let down = document.getElementById('down');
+        //第一基因已变色节点
+        let colorSwitch1 = [];
+        //第二基因已变色节点
+        let colorSwitch2 = [];
+        //文本解析结果
+        let res;
+        //文档加载完毕
+		window.onload = ()=> {
+			up.addEventListener('click',(e)=>{
+				if(e.target.nodeName == 'DIV' && !/(box)|(up)/.test(e.target.getAttribute('class'))) {
+					initial();
+					e.target.style.backgroundColor = 'red';
+					colorSwitch1 = [e.target];
+					colorSwitch2 = [];
+					let val = e.target.previousSibling.innerText;
+					res.forEach((item,index)=> {
+						if(item[0] == val) {
+							let sw = down.childNodes[index].firstChild;
+							sw.style.backgroundColor = 'red';
+							colorSwitch2.push(sw);
+						}
+					})
+					down.scrollLeft = up.scrollLeft;
+				}
+			});
+			down.addEventListener('click',(e)=>{
+				if(e.target.nodeName == 'DIV' && !/(box)|(down)/.test(e.target.getAttribute('class'))) {
+					initial();
+					e.target.style.backgroundColor = 'red';
+					colorSwitch2 = [e.target];
+					colorSwitch1 = [];
+					let val = e.target.nextSibling.innerText;
+					res.forEach((item,index)=> {
+						if(item[1] == val) {
+							let sw = up.childNodes[index].lastChild;
+							sw.style.backgroundColor = 'red';
+							colorSwitch1.push(sw);
+						}
+					})
+					up.scrollLeft = down.scrollLeft;
+				}
+			})
+			
+		};
+		//节点样式初始
+		function initial() {
+			colorSwitch1.forEach((el)=> {
+					el.style.backgroundColor = '#744583';
+			});
+			colorSwitch2.forEach((el)=> {
+					el.style.backgroundColor = '#416b71';
+			})
+		};
+		function jsReadFiles(files) {
+         if (files.length) {
+         	//获取文件读取节点
+         	 let fr = document.getElementById("uploading");
+         	 //获取文件
+             let file = files[0];
+             //创建一个FileReader实例
+             let reader = new FileReader();
+             if (/(?:gost)$/.test(file.name)) {//判断文件类型，是不是gost类型
+             	 //文件读取完成事件
+             	 //上面节点拼接字符串
+             	 let dom1 = '';
+             	 //第一基因已加入节点
+             	 let exit1 = [];
+             	 //第二基因已加入节点
+             	 let exit2 = [];
+             	 //下部节点拼接字符串
+             	 let dom2 = '';
+                 reader.onload = function() {
+                 	//按行分割
+                     res = this.result.split("\n");
+                     res.pop();
+                     //截取等位基因数据，每对保存在一个数组中
+                     res = res.map((item)=> item.split(/\s+/)[0].split(','));
+                     res.forEach((item)=> {
+                     	if(exit1.indexOf(item[0]) == -1) {
+                        //var a = item[0];
+                     	dom1 += '<div class="box"><p><a target="_blank" href="https://www.ncbi.nlm.nih.gov/protein/'+item[0]+'">'+item[0]+'</a></p><div class="block color_black"></div></div>';
+                     	exit1.push(item[0]);
+                     	}
+                     	if(exit2.indexOf(item[1]) == -1) {
+                     	dom2 += '<div class="box"><div class="block Se_color"></div><p><a target="_blank" href="https://www.ncbi.nlm.nih.gov/protein/'+item[1]+'">'+item[1]+'</a></p></div>';
+                     	exit2.push(item[1]);
+                     	}
+                     })
+                     dom1 += '<div class="line1"></div>';
+                     dom2 += '<div class="line2"></div>';
+                     up.innerHTML = dom1;
+                     down.innerHTML = dom2;
+                 	 let len = res.length * 66+'px';
+                 	 up.lastChild.style.width = len;
+                 	 down.lastChild.style.width = len;
+                 }
+                 //读取文件
+                 reader.readAsText(file);
+             } else {
+                 alert('读取文件格式不正确！请上传.gost文件！');
+                 //文件读取节点重置
+                 fr.outerHTML = fr.outerHTML;
+             }
+         }
+     }
+	</script>
+	</body>
+
+	
+</html>

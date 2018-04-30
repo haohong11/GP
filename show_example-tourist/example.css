@@ -1,0 +1,88 @@
+.go_to_main{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 20px;
+}
+.tourist{
+	width: 300px;
+	text-align: center;
+	margin:10px;
+	font-size: 18px;
+}
+.nav{
+	text-align: center;
+	color: #92ae8b;
+	font-size: 20px;
+}
+.header{
+	width: 400px;
+	margin:40px auto 80px;
+}
+.header p{
+	font-size: 30px;
+	color: black;
+	text-align: center;
+}
+.header .h_tip{
+	text-align: center;
+	color: #92ae8b;
+	font-size: 20px;
+}
+.up{
+	position: relative;
+	/*background-color: pink;*/
+	width: 1000px;
+	height: 24px;
+	margin: 20px auto;
+}
+.block{
+	z-index: 9;
+	height: 30px;
+	width: 60px;
+}
+.box{
+
+	display: inline-block;
+	/*float: left;*/
+	margin-left: 30px;
+}
+.box p{
+	text-align: center;
+}
+.line1{
+	z-index: -1;
+	height: 4px;
+	width: 1000px;
+	background-color: #a4b5b1;
+	position: absolute;
+	top:28px;
+	/*vertical-align: middle;*/
+}
+.block:hover{
+	background-color: #75a7c2;
+}
+.color_black{background-color: #744583;}
+
+
+.down{
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 200px;
+	position: relative;
+}
+.line2{
+	z-index: -1;
+	height: 4px;
+	width: 1000px;
+	background-color: #b5ad8b;
+	position: absolute;
+	top:14px;
+}
+.Se_color{background-color: #416b71;}
+
+
+.color_red{
+	background-color: red;
+}

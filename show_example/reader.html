@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>读取文件</title>
+</head>
+<body>
+	文件读取:<input type="file" onchange="jsReadFiles(this.files)"/ id="uploading">
+	<script type="text/javascript">
+		function jsReadFiles(files) {
+         if (files.length) {
+         	//获取文件读取节点
+         	 var fr = document.getElementById("uploading");
+         	 //获取文件
+             var file = files[0];
+             //创建一个FileReader实例
+             var reader = new FileReader();
+             if (/(?:gost)$/.test(file.name)) {//判断文件类型，是不是gost类型
+             	 //文件读取完成事件
+                 reader.onload = function() {
+                 	//按行分割
+                     var res = this.result.split("\n");
+                     //截取等位基因数据，每对保存在一个数组中
+                     res = res.map((item)=> item.split(/\s+/)[0].split(','));
+                     console.log(res);
+                 }
+                 //读取文件
+                 reader.readAsText(file);
+             } else {
+                 alert('读取文件格式不正确！');
+                 //文件读取节点重置
+                 fr.outerHTML = fr.outerHTML;
+             }
+         }
+     }
+	</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+.detail{
+	position: absolute;
+	left: 20px;
+	top: 400px;
+	font-size: 24px;
+}
+.tourist{
+	width: 300px;
+	text-align: center;
+	margin:10px;
+	font-size: 18px;
+}
+.view_his{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 165px;
+}
+.label{
+	font-size: 20px;
+}
+.tip{
+	margin-top:20px;
+	color: #528eac;
+	font-size: 16px;
+	/*text-align: center;*/
+	line-height: 30px;
+}
+.up{
+	width: 1200px;
+	margin: 20px auto;
+	position: relative;
+	white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+.block{
+	z-index: 9;
+	height: 34px;
+	width: 64px;
+}
+.box{
+	display: inline-block;
+	margin-right: 20px;
+	width: 64px;
+	overflow: hidden;
+}
+
+.line1{
+	z-index: -1;
+	height: 4px;
+	width: 100%;
+	background-color: #a4b5b1;
+	position: absolute;
+	bottom: 14px;
+}
+.block:hover{
+	cursor: pointer;
+}
+.color_black{background-color: #744583;}
+
+
+.down{
+	width: 1200px;
+	height: 80px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 200px;
+	position: relative;
+	overflow-y: hidden;
+	white-space: nowrap;
+	overflow-x: auto;
+}
+.line2{
+	z-index: -1;
+	height: 4px;
+	width: 100%;
+	background-color: #b5ad8b;
+	position: absolute;
+	top:14px;
+}
+.Se_color{background-color: #416b71;}
